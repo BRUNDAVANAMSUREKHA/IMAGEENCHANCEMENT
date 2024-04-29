@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Enhancement</title>
+    <style>
+        body {
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            background-image: url('/static/images/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Align items to the top */
+            padding: 20px;
+        }
+
+        .form-container,
+        .image-container {
+            margin-top: 80px;
+            background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha value to make it more transparent */
+            border-radius: 8px;
+            overflow: hidden; /* Prevents content from overflowing */
+            width: 500px; 
+            height: 400px;
+        }
+
+        .form-container {
+            margin-top: 140px;
+            margin-right: 20px;
+            width: 100%; /* Set width to 100% */
+        }
+
+        h1 {
+            text-align: center;
+            color: blue;
+            margin: 20px 0; /* Adjusted margin */
+        }
+
+        form {
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="file"],
+        select {
+            width: calc(100% - 16px); /* Adjusted width */
+            padding: 8px;
+            margin: 0 8px 15px; /* Adjusted margin */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: calc(100% - 16px); /* Adjusted width */
+            margin: 0 8px; /* Adjusted margin */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            color: red;
+            margin-top: 10px;
+            text-align: center; /* Center the error message */
+        }
+        h1{
+            font-size: 80px;
+        }
+
+        img {
+            width: 250px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Image Enhancement</h1>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <form action="/" method="post" enctype="multipart/form-data">
+                <label for="file">Select image:</label>
+                <input type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
+                
+                <label for="version">Choose enhancement version:</label>
+                <select id="version" name="version">
+                    <option value="v1.4">GFPGAN v1.2</option>
+                    <option value="v1.4">GFPGAN v1.3</option>
+                    <option value="v1.4">GFPGAN v1.4</option>
+                    <option value="v1.4">RestoreFormer</option>
+                </select>
+                
+                <label for="scale">Choose scale:</label>
+                <select id="scale" name="scale">
+                    <option value="2">2x</option>
+                    <option value="4">4x</option>
+                </select>
+                
+                <input type="submit" value="Enhance">
+            </form>
+
+            {% if error %}
+            <p>{{ error }}</p>
+            {% endif %}
+        </div>
+        <div class="image-container">
+            <img src="/static/images/user.png" alt="user image">
+        </div>        
+    </div>
+</body>
+
+</html>
